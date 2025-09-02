@@ -745,6 +745,17 @@ const App = () => {
   );
 };
 
+// Auth Redirect Component
+const AuthRedirect = () => {
+  const { user } = useAuth();
+  
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+  
+  return <AuthPage />;
+};
+
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
