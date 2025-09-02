@@ -257,7 +257,7 @@ async def generate_qr_code(restaurant_id: str):
         raise HTTPException(status_code=404, detail="Restaurant not found")
     
     # Generate QR code URL (pointing to frontend menu page)
-    frontend_url = os.environ.get('REACT_APP_BACKEND_URL', 'http://localhost:3000')
+    frontend_url = "https://scanmenu-1.preview.emergentagent.com"  # Use the actual frontend URL
     menu_url = f"{frontend_url}/menu/{restaurant_id}"
     
     # Generate QR code
