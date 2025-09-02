@@ -735,8 +735,8 @@ const App = () => {
         <div className="App">
           <Routes>
             <Route path="/menu/:restaurantId" element={<PublicMenu />} />
+            <Route path="/auth" element={<AuthRedirect />} />
             <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/auth" element={<AuthPage />} />
           </Routes>
           <Toaster />
         </div>
