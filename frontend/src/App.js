@@ -96,12 +96,25 @@ const AuthPage = () => {
         ? { email: formData.email, password: formData.password }
         : formData;
 
+      console.log('Making request to:', `${API}${endpoint}`);
       const response = await axios.post(`${API}${endpoint}`, data);
       
-      login(response.data.access_token, response.data.restaurant);
-      toast.success(isLogin ? 'Login successful!' : 'Registration successful!');
+      console.log('API Response:', response.data);
+      
+      if (response.data && response.data.access_token && response.data.restaurant) {
+        login(response.data.access_token, response.data.restaurant);
+        toast.success(isLogin ? 'Login successful!' : 'Registration successful!');
+        
+        // Force navigation to dashboard
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
+      } else {
+        throw new Error('Invalid response format');
+      }
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'An error occurred');
+      console.error('Auth error:', error);
+      toast.error(error.response?.data?.detail || error.message || 'An error occurred');
     } finally {
       setLoading(false);
     }
