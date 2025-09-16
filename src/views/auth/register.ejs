@@ -1,0 +1,27 @@
+<section class="auth-hero">
+	<div class="bg-3d" aria-hidden="true">
+		<canvas id="bg-canvas"></canvas>
+	</div>
+	<div class="auth-card">
+		<h2>Create your restaurant</h2>
+		<form method="post" action="/register" class="auth-form">
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+			<div class="field">
+				<label>Restaurant name</label>
+				<input name="restaurantName" placeholder="Demo Bistro" required />
+			</div>
+			<div class="field">
+				<label>Email</label>
+				<input name="email" type="email" placeholder="you@example.com" required />
+			</div>
+			<div class="field">
+				<label>Password</label>
+				<input name="password" type="password" placeholder="••••••••" required />
+			</div>
+			<button class="primary big">Create account</button>
+		</form>
+		<p class="muted">Have an account? <a href="/login">Sign in</a></p>
+	</div>
+</section>
+
+

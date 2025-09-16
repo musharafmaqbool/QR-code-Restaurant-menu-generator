@@ -1,0 +1,46 @@
+<section class="menu">
+	<header class="menu-header">
+		<div class="row vcenter gap">
+			<% if (restaurant.logoUrl) { %>
+				<img class="menu-logo" src="<%= restaurant.logoUrl %>" alt="<%= restaurant.name %> logo" />
+			<% } %>
+			<h2 class="menu-title"><%= restaurant.name %></h2>
+		</div>
+		<div class="share">
+			<button class="ghost" data-copy="<%= APP_BASE_URL %>/m/<%= restaurant.slug %>">Copy link</button>
+			<a class="ghost" href="/m/<%= restaurant.slug %>/qr" target="_blank">Download QR</a>
+		</div>
+	</header>
+	<% if (restaurant.address || restaurant.phone) { %>
+	<div class="menu-meta muted">
+		<% if (restaurant.address) { %><div><%= restaurant.address %></div><% } %>
+		<% if (restaurant.phone) { %><div><%= restaurant.phone %></div><% } %>
+	</div>
+	<% } %>
+	<% if (restaurant.sections.length === 0) { %>
+	<p class="muted">No items yet.</p>
+	<% } %>
+	<% restaurant.sections.forEach(function(section){ %>
+	<div class="menu-section">
+		<h3><%= section.name %></h3>
+		<ul>
+			<% section.dishes.forEach(function(d){ %>
+			<li class="menu-item">
+				<div class="menu-left">
+					<div class="menu-item-title"><%= d.name %></div>
+					<div class="menu-item-desc"><%= d.description || '' %></div>
+				</div>
+				<div class="menu-right">
+					<div class="menu-item-price">$<%= (d.priceCents/100).toFixed(2) %></div>
+					<% if (d.imageUrl) { %>
+						<img class="menu-item-img" src="<%= d.imageUrl %>" alt="<%= d.name %>" />
+					<% } %>
+				</div>
+			</li>
+			<% }) %>
+		</ul>
+	</div>
+	<% }) %>
+</section>
+
+

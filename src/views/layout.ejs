@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><%= title || 'QR Menu' %></title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<% if (typeof useBitcountFont !== 'undefined' && useBitcountFont) { %>
+	<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+	<% } else { %>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<% } %>
+	<link rel="stylesheet" href="/public/styles.css" />
+</head>
+<body>
+	<header class="topbar">
+		<div class="container row spread vcenter">
+			<div class="row vcenter gap brand">
+				<img src="/public/46130.jpg" alt="Logo" class="logo" />
+			</div>
+			<nav class="nav row gap" data-nav>
+				<% if (user) { %>
+				<div class="user dropdown">
+					<button class="user-btn" data-toggle-user>
+						<span class="user-icon">👤</span>
+					</button>
+					<div class="dropdown-menu" data-user-menu>
+						<div class="dropdown-item">
+							<strong><%= restaurant ? restaurant.name : user.email %></strong>
+						</div>
+						<% if (restaurant) { %>
+						<div class="dropdown-item muted">Slug: <%= restaurant.slug %></div>
+						<% } %>
+						<div class="dropdown-divider"></div>
+						<form method="post" action="/logout">
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+							<button class="ghost wide">Logout</button>
+						</form>
+					</div>
+				</div>
+				<% } else { %>
+				<a class="ghost" href="/login">Login</a>
+				<% } %>
+			</nav>
+		</div>
+	</header>
+	<main class="container main">
+		<% if (flash.error && flash.error.length) { %>
+		<div class="alert error"><%= flash.error[0] %></div>
+		<% } %>
+		<% if (flash.success && flash.success.length) { %>
+		<div class="alert success"><%= flash.success[0] %></div>
+		<% } %>
+		<%- body %>
+	</main>
+	<footer class="footer">
+		<div class="container muted">© <%= new Date().getFullYear() %> QR Menu</div>
+	</footer>
+	<script src="/public/main.js" defer></script>
+</body>
+</html>
+
+

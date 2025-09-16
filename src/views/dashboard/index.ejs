@@ -1,0 +1,73 @@
+<section>
+	<div class="row spread vcenter">
+		<h2>Dashboard</h2>
+		<div class="row gap">
+			<a class="chip" href="/m/<%= restaurant.slug %>" target="_blank">View public menu</a>
+			<a class="chip" href="/m/<%= restaurant.slug %>/qr" target="_blank">Download QR</a>
+		</div>
+	</div>
+
+	<div class="card">
+		<h3>Restaurant details</h3>
+		<form class="row details-form" method="post" action="/dashboard/restaurant" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+			<input name="name" placeholder="Restaurant name" value="<%= restaurant.name %>" required />
+			<input name="address" placeholder="Address" value="<%= restaurant.address || '' %>" />
+			<input name="phone" placeholder="Phone" value="<%= restaurant.phone || '' %>" />
+			<input name="logo" type="file" accept="image/*" />
+			<button>Save</button>
+		</form>
+		<% if (restaurant.logoUrl) { %>
+		<div class="row vcenter gap"><img class="thumb" src="<%= restaurant.logoUrl %>" alt="Logo" /><span class="muted">Logo preview</span></div>
+		<% } %>
+	</div>
+
+	<h3>Sections</h3>
+	<form method="post" action="/dashboard/section">
+		<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+		<input name="name" placeholder="New section name" required />
+		<button>Add section</button>
+	</form>
+
+	<% restaurant.sections.forEach(function(section){ %>
+	<div class="card">
+		<div class="row">
+			<h4><%= section.name %></h4>
+			<form method="post" action="/dashboard/section/<%= section.id %>/delete">
+				<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+				<button class="danger">Delete section</button>
+			</form>
+		</div>
+		<div class="card-body">
+			<h5>Dishes</h5>
+			<form method="post" action="/dashboard/dish" class="row dish-form" enctype="multipart/form-data">
+				<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+				<input type="hidden" name="sectionId" value="<%= section.id %>" />
+				<input name="name" placeholder="Dish name" required />
+				<input name="description" placeholder="Description" />
+				<input name="priceCents" placeholder="Price (cents)" type="number" min="0" required />
+				<input name="image" type="file" accept="image/*" />
+				<button>Add dish</button>
+			</form>
+			<ul>
+				<% section.dishes.forEach(function(d){ %>
+				<li class="row vcenter">
+					<span>
+						<strong><%= d.name %></strong> - <%= (d.priceCents/100).toFixed(2) %>
+						<% if (d.imageUrl) { %>
+							<img src="<%= d.imageUrl %>" alt="<%= d.name %>" class="thumb" />
+						<% } %>
+					</span>
+					<form method="post" action="/dashboard/dish/<%= d.id %>/delete">
+						<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+						<button class="danger">Delete</button>
+					</form>
+				</li>
+				<% }) %>
+			</ul>
+		</div>
+	</div>
+	<% }) %>
+</section>
+
+

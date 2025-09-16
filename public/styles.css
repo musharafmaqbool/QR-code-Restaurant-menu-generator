@@ -1,0 +1,90 @@
+:root{--bg:#0a0f11;--panel:#0f1c22;--panel2:#0d1720;--text:#e7f3f5;--muted:#9cc1c8;--primary:#1da1a9;--primary-600:#17858c;--accent:#22c55e;--danger:#ef4444;--glow:rgba(29,161,169,.35);}/* tuned to match logo teal */
+*{box-sizing:border-box}
+body{margin:0;background:
+	radial-gradient(1200px 600px at 10% -10%, #1b0d2b 0, transparent 60%),
+	radial-gradient(1200px 600px at 110% 10%, #07231a 0, transparent 60%),
+	linear-gradient(180deg,#0a0a0f,#0a0a0f);
+color:var(--text);font-family:'Roboto Condensed',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:980px;margin:0 auto;padding:20px}
+.row{display:flex;gap:10px;align-items:center}
+.row.spread{justify-content:space-between}.row.gap{gap:12px}.row.vcenter{align-items:center}
+.muted{color:var(--muted)}
+.topbar{position:sticky;top:0;background:linear-gradient(180deg,#0b0b12,rgba(11,11,18,.6));backdrop-filter:blur(10px);border-bottom:1px solid #1f2130;z-index:10}
+.brand a{color:#eaffff}
+.logo{width:34px;height:34px;border-radius:999px;object-fit:cover;border:1px solid #2a2d45;background:#0a0a0a}
+.brand-text{font-weight:700;margin-left:6px}
+.hamburger{display:none;flex-direction:column;gap:4px;background:transparent;border:1px solid #2a2d45;padding:8px;border-radius:10px}
+.hamburger span{display:block;width:20px;height:2px;background:#cfeef1}
+.nav{align-items:center}
+.user-btn{background:transparent;border:1px solid #2a2d45;padding:8px 10px;border-radius:999px}
+.dropdown{position:relative}
+.dropdown-menu{position:absolute;right:0;top:calc(100% + 8px);background:linear-gradient(180deg,#0f111a,#0c0e17);border:1px solid #2a2d45;border-radius:12px;min-width:200px;box-shadow:0 10px 30px -15px var(--glow);display:none;padding:8px}
+.dropdown .dropdown-menu .dropdown-item{padding:8px 10px}
+.dropdown .dropdown-divider{height:1px;background:#23263b;margin:6px 0}
+.dropdown.open .dropdown-menu{display:block}
+.ghost.wide{width:100%;text-align:left}
+.main{min-height:70vh}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));padding:14px;border-radius:14px;margin:14px 0;border:1px solid #212335;box-shadow:0 10px 30px -15px var(--glow)}
+.card .card-body{padding-top:6px}
+.
+input,button{padding:12px 12px;border-radius:10px;border:1px solid #26293e;background:#0f111a;color:var(--text)}
+input:focus{outline:2px solid var(--primary)}
+button{background:var(--primary);color:#f7f5ff;border:0;cursor:pointer;box-shadow:0 8px 20px -10px var(--glow)}button:hover{background:var(--primary-600)}button.ghost{background:transparent;border:1px solid #2a2d45}button.danger{background:var(--danger);color:#fff}
+.chip{display:inline-block;padding:8px 12px;border-radius:999px;background:#171929;border:1px solid #25273b}
+.thumb{width:38px;height:38px;object-fit:cover;border-radius:8px;border:1px solid #2a2d45;margin-left:8px}
+.dish-form{flex-wrap:wrap}
+.dish-form input[name="name"]{flex:1 1 180px}
+.dish-form input[name="description"]{flex:1 1 240px}
+.dish-form input[name="priceCents"]{width:160px}
+.dish-form input[type="file"]{width:220px}
+.alert{padding:10px;border-radius:10px;margin:12px 0;border:1px solid #2a1d2a}.alert.error{background:#3b0d0d;color:#fca5a5}.alert.success{background:#0f2f16;color:#86efac}
+.footer{border-top:1px solid #1f2130;padding:20px;margin-top:40px}
+
+/* Auth pages with 3D canvas background */
+.auth-hero{position:relative;min-height:100vh;display:grid;place-items:center;padding:40px}
+.auth-hero .bg-3d{position:absolute;inset:0;z-index:0;overflow:hidden}
+.auth-hero .auth-card{position:relative;z-index:1;width:100%;max-width:420px;background:linear-gradient(180deg,#121220,#0f1018);border:1px solid #212335;border-radius:16px;padding:24px 22px;box-shadow:0 20px 50px -30px var(--glow)}
+.auth-card h2{margin:0 0 12px}
+.auth-form .field{display:flex;flex-direction:column;margin:12px 0}
+.auth-form label{font-size:.9rem;color:#c6c9d8;margin-bottom:6px}
+.auth-form input{width:100%}
+.primary.big{width:100%;padding:12px 14px;margin-top:8px}
+
+/* Menu page */
+.menu-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.menu-title{font-size:2rem}
+.menu-section{margin:22px 0}
+.menu-item{display:flex;justify-content:space-between;align-items:center;border:1px solid #242842;background:linear-gradient(180deg,#0f111a,#0c0e17);padding:14px;border-radius:12px;margin:10px 0}
+.menu-left{max-width:70%}
+.menu-item-title{font-weight:700;letter-spacing:.2px}
+.menu-item-desc{color:var(--muted);font-size:.95rem}
+.menu-right{display:flex;align-items:center;gap:12px}
+.menu-item-price{font-weight:800;color:#f0f2ff}
+.menu-item-img{width:80px;height:80px;object-fit:cover;border-radius:12px;border:1px solid #2a2d45}
+.menu-logo{width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid #2a2d45}
+.menu-meta{margin:6px 0 12px}
+
+/* Subtle animated gradient particles for login canvas (painted by JS) */
+canvas#bg-canvas{width:100%;height:100%;display:block;opacity:.6;filter:blur(0.3px)}
+
+/* Responsive */
+@media (max-width: 720px){
+	.container{padding:16px}
+	.nav{display:none}
+	.hamburger{display:flex}
+	.topbar .container{gap:10px}
+	.menu-left{max-width:60%}
+	.menu-item-img{width:64px;height:64px}
+}
+
+/* Homepage hero */
+.hero3d{padding:40px 0}
+.hero-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center}
+.hero-left h1{font-size:2.4rem;margin:0 0 10px;font-family:'Bitcount Grid Double', system-ui}
+.btn-cta{display:inline-block;padding:12px 16px;border-radius:12px;background:var(--accent);color:#062012;font-weight:700;border:0}
+.hero-right{position:relative;min-height:360px;border-radius:18px;border:1px solid #20303a;background:radial-gradient(800px 400px at 60% -10%, rgba(34,197,94,.15) 0, transparent 60%),linear-gradient(180deg,#0c1117,#0b0f14);box-shadow:0 30px 80px -50px var(--glow);overflow:hidden}
+canvas#food-canvas{width:100%;height:100%;display:block}
+@media (max-width: 900px){.hero-wrap{grid-template-columns:1fr}.hero-right{min-height:280px}}
+
+
